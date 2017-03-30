@@ -48,4 +48,4 @@ Temporary Items
 
 # Exclude node_modules folders
 **/node_modules/**
-
+**/*.js
