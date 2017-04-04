@@ -1,29 +1,29 @@
 // Creating "Modules" using "export" keyword
 
 export class Name{
-    first: any;
-    second: any;
+    first: string;
+    second: string;
 
-    constructor(first, second) {
+    constructor(first: string, second: string) {
         this.first = first;
         this.second = second;
     }
 
-    get nameMessage() {
+    get nameMessage() : string {
         return `Hello ${this.first} ${this.second}`;
     }
 }
 
 export class WeatherLocation{
-    weather: any;
-    city: any;
+    weather: string;
+    city: string;
 
-    constructor(weather, city) {
+    constructor(weather: string, city: string) {
         this.weather = weather;
         this.city = city;
     }
 
-    get weatherMessage() {
+    get weatherMessage(): string {
         return `It is ${this.weather} in ${this.city}`;
     }
 }
