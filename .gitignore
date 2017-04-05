@@ -54,6 +54,7 @@ Temporary Items
 
 # Exclude unnecessary javascripts & jsons
 JavaScriptPrimer/**/*.js
+SportsStore/app/*.js
 **/rxjs.module.min.js
 **/typings.json
 
