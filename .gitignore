@@ -48,4 +48,14 @@ Temporary Items
 
 # Exclude node_modules folders
 **/node_modules/**
-**/*.js
+
+# Exclude typings folders.. since they are generated when you run "npm run typings -- install dt~core-js --save --global" commands
+**/typings/**
+
+# Exclude unnecessary javascripts & jsons
+JavaScriptPrimer/**/*.js
+**/rxjs.module.min.js
+**/typings.json
+
+# Exclude npm debug logs
+**/npm-debug.log
