@@ -8,6 +8,8 @@ export class Cart {
     public cartPrice: number = 0;
 
     addLine(product: Product, quantity: number = 1) {
+        console.log(this.lines);
+        console.log('product id:' + product.id);
         let line = this.lines.find(line => line.product.id == product.id);
         if (line != undefined) {
             line.quantity += quantity;
