@@ -12,6 +12,7 @@ const PORT = 3500;
 @Injectable()
 export class RestDataSource {
     baseUrl: string;
+    auth_token: string;
 
     constructor(private http: Http) {
         this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
@@ -25,11 +26,32 @@ export class RestDataSource {
         return this.sendRequest(RequestMethod.Post, "orders", order);
     }
 
-    private sendRequest(verb: RequestMethod, url: string, body?: Product | Order) : Observable<Product|Order> {
+    authenticate(user: string, pass: string): Observable<boolean>{
+        console.log('user: ' + user);
+        console.log('password: ' + pass);
+        console.log('url: ' + this.baseUrl + "login");
         return this.http.request(new Request({
+            method: RequestMethod.Post,
+            url: this.baseUrl + "login",
+            body: { name: user, password: pass }
+        })).map(response => {
+            let r = response.json();
+            console.log('response: ');
+            console.log(r);
+            this.auth_token = r.success ? r.token: null;
+            return r.success;
+        });
+    }
+
+    private sendRequest(verb: RequestMethod, url: string, body?: Product | Order, auth: boolean = false) : Observable<Product|Product[]|Order|Order[]> {
+        let request = new Request({
             method: verb,
             url: this.baseUrl + url,
             body: body
-        })).map(response => response.json());
+        });
+        if (auth && this.auth_token != null) {
+            request.headers.set("Authorization", `Bearer<${this.auth_token}>`);
+        }
+        return this.http.request(request).map(response => response.json());
     }
 }
