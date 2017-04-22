@@ -1,4 +1,4 @@
-<div [ngClass]="'p-a-1 ' + getClasses()">
+<div [ngClass]="'p-a-1 ' + getClasses(1)">
     Name: {{model.getProduct(1)?.name || 'None'}}
 </div>
 <div class="form-group m-t-1">
@@ -20,3 +20,57 @@
         </td>
     </tr>
 </table>
+
+<div [class]="getClasses(1)">
+    The first product is {{model.getProduct(1).name}}.
+</div>
+<div [class]="getClasses(2)">
+    The second product is {{model.getProduct(2).name}}.
+</div>
+
+<!--Setting Individual Classes Using the Special Class Binding-->
+<br />
+<div class="p-a-1"
+    [class.bg-success]="model.getProduct(3).price < 50"
+    [class.bg-info]="model.getProduct(3).price >= 50">
+    The third product is {{model.getProduct(3).name}} for {{model.getProduct(3).price | currency:"USD":true:"2.2-2"}}
+</div>
+
+<!--Setting Classes Using the ngClassDirective-->
+<br/>
+<div class="p-a-1" [ngClass]="getClassMap(1)">
+    The first product is {{model.getProduct(1).name}} for {{model.getProduct(1).price | currency:"USD":true:"2.2-2"}}
+</div>
+<div class="p-a-1" [ngClass]="getClassMap(2)">
+    The second product is {{model.getProduct(2).name}} for {{model.getProduct(2).price | currency:"USD":true:"2.2-2"}}
+</div>
+<div class="p-a-1" [ngClass]="getClassMap(3)">
+    The third product is {{model.getProduct(3).name}} for {{model.getProduct(3).price | currency:"USD":true:"2.2-2"}}
+</div>
+
+<!--Setting a  Single Style Property-->
+<br />
+<div class="p-a-1 bg-warning">
+    The <span [style.fontSize]="fontSizeWithUnits">first</span> product is {{model.getProduct(1).name}}.
+</div>
+<div class="p-a-1 bg-info">
+    The <span [style.fontSize.px]="fontSizeWithoutUnits">second</span> product is {{model.getProduct(2).name}}.
+</div>
+
+<!--Setting Styles Uisng the ngStyle Directive-->
+<br />
+<div class="p-a-1 bg-warning">
+    The <span [ngStyle]="getStyles(1)">first</span> product is {{model.getProduct(1).name}}.
+</div>
+<div class="p-a-1 bg-info">
+    The <span [ngStyle]="getStyles(2)">second</span> product is {{model.getProduct(2).name}}.
+</div>
+
+<!--Updating the Data in the Application (from the browser console). Need to get rid of all the div uses non ng Directives above.. or this will fail when you do appRef.tick()-->
+<br>
+<div [ngClass]="getClassesByPosition(0)">
+    The first product is {{getProductByPosition(0).name}}
+</div>
+<div [ngClass]="getClassesByPosition(1)">
+    The second product is {{getProductByPosition(1).name}}
+</div>
