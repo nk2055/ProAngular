@@ -4,7 +4,7 @@ import { Product } from "./product.model";
 
 @Component({
     selector: "app",
-    templateUrl: "app/template.html"
+    templateUrl: "app/ngTemplateOutlet.html"
 })
 export class ProductComponent {
     model: Model = new Model();
@@ -16,37 +16,28 @@ export class ProductComponent {
         console.log((<any>window).model);
     }
 
+    getKey(index: number, product: Product) {
+        return product.id;
+    }
+
     getProductByPosition(position: number): Product {
         return this.model.getProducts()[position];
     }
 
-    getClassesByPosition(position: number): string {
-        let product = this.getProductByPosition(position);
-        return "p-a-1 " + (product.price < 50 ? "bg-info" : "bg-warning");
+    getProduct(key: number): Product {
+        var product = this.model.getProduct(key);
+        console.log(product);
+        return product;
     }
 
-    getClasses(key: number): string {
-        let product = this.model.getProduct(key);
-        return "p-a-1 " + (product.price < 50 ? "bg-info" : "bg-warning");
+    getProducts(): Product[] {
+        return this.model.getProducts();
     }
 
-    getClassMap(key: number): Object {
-        let product = this.model.getProduct(key);
-        return {
-            "text-xs-center bg-danger": product.name == "Kayak",
-            "bg-info": product.price < 50
-        };
+    getProductCount(): number {
+        return this.getProducts().length;
     }
 
-    getStyles(key: number): Object {
-        let product = this.model.getProduct(key);
-        return {
-            fontSize: "30px",
-            "margin.px": 100,
-            color: product.price > 50 ? "red" : "green"
-        };
-    }
-
-    fontSizeWithUnits: string = "30px";
-    fontSizeWithoutUnits: string = "30";
+    targetName: string = "Kayak";
 }
+

@@ -1,76 +1,95 @@
-<div [ngClass]="'p-a-1 ' + getClasses(1)">
-    Name: {{model.getProduct(1)?.name || 'None'}}
+<div class="bg-info p-a-1">
+    There are {{getProductCount()}} products.
 </div>
-<div class="form-group m-t-1">
-    <label>Name:</label>
-    <input class="form-control" [value]="model.getProduct(1)?.name || 'None'" />
-    The first product is {{model.getProduct(1)?.name || 'None'}}.
+
+
+<!--Using the ngIf Directive-->
+<div *ngIf="getProductCount() > 4" class="bg-info p-a-1 m-t-1">
+    There are more than 4 products in the model
 </div>
-<table class="table table-sm table-bordered table-striped m-t-1">
+<div *ngIf="getProductByPosition(0).name != 'Kayak'" class="bg-info p-a-1 m-t-1">
+    The first product isn't a Kayak
+</div>
+
+
+<!--Using the ngSwitch Directive-->
+<div class="bg-info p-a-1 m-t-1" [ngSwitch]="getProductCount()">
+    <span *ngSwitchCase="2">There are two products</span>
+    <span *ngSwitchCase="5">There are five products</span>
+    <span *ngSwitchDefault>This is the default</span>   
+</div>
+
+
+<!--Avoiding Literal Value Problems in ngSwitchCase-->
+<!--"targetName" is a angular property which can be used as *ngSwitchCase="targetName" -->
+<div class="bg-info p-a-1 m-t-1" [ngSwitch]="getProduct(2).name">
+    <span *ngSwitchCase="'Kayak'">Kayak</span>
+    <span *ngSwitchCase="'Lifejacket'">Lifejackage</span>
+    <span *ngSwitchDefault>Other Product</span>
+</div>
+
+
+<!--Using ngFor Directive-->
+<table class="table table-sm table-bordered m-t-1">
     <tr>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-        <th>5</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
     </tr>
-    <tr>
-        <td [attr.colspan]="model.getProducts().length">
-            {{model.getProduct(1)?.name || 'None'}}
-        </td>
+    <tr *ngFor="let item of getProducts()">
+        <td>{{item.name}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.price | currency:"USD":true:"2.2-2"}}</td>
     </tr>
 </table>
 
-<div [class]="getClasses(1)">
-    The first product is {{model.getProduct(1).name}}.
-</div>
-<div [class]="getClasses(2)">
-    The second product is {{model.getProduct(2).name}}.
-</div>
 
-<!--Setting Individual Classes Using the Special Class Binding-->
-<br />
-<div class="p-a-1"
-    [class.bg-success]="model.getProduct(3).price < 50"
-    [class.bg-info]="model.getProduct(3).price >= 50">
-    The third product is {{model.getProduct(3).name}} for {{model.getProduct(3).price | currency:"USD":true:"2.2-2"}}
-</div>
+<!--Using the Index value in *ngFor directive-->
+<table class="table table-sm table-bordered m-t-1">
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+    <tr *ngFor="let item of getProducts(); let i=index">
+        <td>{{i+1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.price}}</td>
+    </tr>
+</table>
 
-<!--Setting Classes Using the ngClassDirective-->
-<br/>
-<div class="p-a-1" [ngClass]="getClassMap(1)">
-    The first product is {{model.getProduct(1).name}} for {{model.getProduct(1).price | currency:"USD":true:"2.2-2"}}
-</div>
-<div class="p-a-1" [ngClass]="getClassMap(2)">
-    The second product is {{model.getProduct(2).name}} for {{model.getProduct(2).price | currency:"USD":true:"2.2-2"}}
-</div>
-<div class="p-a-1" [ngClass]="getClassMap(3)">
-    The third product is {{model.getProduct(3).name}} for {{model.getProduct(3).price | currency:"USD":true:"2.2-2"}}
-</div>
+<!--Using Odd and Even Values in *ngFor Directive-->
+<table class="table table-sm table-bordered m-t-1">
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+    <tr *ngFor="let item of getProducts(); let i=index; let odd=odd" [class.bg-primary]="odd" [class.bg-info]="!odd">
+        <td>{{i+1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.price | currency:"USD":true:"2.2-2"}}</td>
+    </tr>
+</table>
 
-<!--Setting a  Single Style Property-->
-<br />
-<div class="p-a-1 bg-warning">
-    The <span [style.fontSize]="fontSizeWithUnits">first</span> product is {{model.getProduct(1).name}}.
-</div>
-<div class="p-a-1 bg-info">
-    The <span [style.fontSize.px]="fontSizeWithoutUnits">second</span> product is {{model.getProduct(2).name}}.
-</div>
 
-<!--Setting Styles Uisng the ngStyle Directive-->
-<br />
-<div class="p-a-1 bg-warning">
-    The <span [ngStyle]="getStyles(1)">first</span> product is {{model.getProduct(1).name}}.
-</div>
-<div class="p-a-1 bg-info">
-    The <span [ngStyle]="getStyles(2)">second</span> product is {{model.getProduct(2).name}}.
-</div>
-
-<!--Updating the Data in the Application (from the browser console). Need to get rid of all the div uses non ng Directives above.. or this will fail when you do appRef.tick()-->
-<br>
-<div [ngClass]="getClassesByPosition(0)">
-    The first product is {{getProductByPosition(0).name}}
-</div>
-<div [ngClass]="getClassesByPosition(1)">
-    The second product is {{getProductByPosition(1).name}}
-</div>
+<!--Using First and Last values in *ngFor directive-->
+<table class="table table-sm table-bordered m-t-1">
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+    <tr *ngFor="let item of getProducts(); let i=index; let odd=odd; let first=first; let last=last; trackBy:getKey"
+        [class.bg-primary]="odd" [class.bg-info]="!odd" [class.bg-warning]="first || last">
+        <td>{{i+1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.category}}</td>
+        <td *ngIf="!last">{{item.price | currency:"USD":true:"2.2-2"}}</td>
+    </tr>
+</table>
