@@ -9,6 +9,9 @@ import { Product } from "./product.model";
 export class ProductComponent {
     model: Model = new Model();
 
+    counter: number = 1;
+    targetName: string = "Kayak";
+
     constructor(ref: ApplicationRef) {
         (<any>window).appRef = ref;
         (<any>window).model = this.model;
@@ -26,7 +29,6 @@ export class ProductComponent {
 
     getProduct(key: number): Product {
         var product = this.model.getProduct(key);
-        console.log(product);
         return product;
     }
 
@@ -38,6 +40,12 @@ export class ProductComponent {
         return this.getProducts().length;
     }
 
-    targetName: string = "Kayak";
+    getProductPrice(index: number): number {
+        return Math.floor(this.getProduct(index).price);
+    }
+
+    get nextProduct(): Product {
+        return this.model.getProducts().shift();
+    }
 }
 

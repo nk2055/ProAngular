@@ -21,3 +21,18 @@
     There are {{getProductCount()}} products.
 </div>
 <template [ngTemplateOutlet]="titleTemplate2" [ngOutletContext]="{title: 'Footer'}"></template>
+
+
+<!--will result in ORIGINAL EXCEPTION: Express has changed after it was checked.
+because this is one-way binding..but nextProduct() method manipulates the data-->
+<!--<div class="bg-info p-a-1">
+    Next Product is {{nextProduct.name}}
+</div>-->
+
+
+<!--will result in ECEPTION: TypeError: Cannot read property 'floor' of undefined
+because Angular can't acccess the global namespace such as Math
+define this type of operation in component.ts file-->
+<div class="bg-info p-a-1">
+    The rounded price is {{getProductPrice(1) | currency:"USD":true:"2.2-2"}}
+</div>
