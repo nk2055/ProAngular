@@ -11,6 +11,7 @@ export class ProductComponent {
 
     counter: number = 1;
     targetName: string = "Kayak";
+    selectedProduct: string;
 
     constructor(ref: ApplicationRef) {
         (<any>window).appRef = ref;
@@ -42,6 +43,10 @@ export class ProductComponent {
 
     getProductPrice(index: number): number {
         return Math.floor(this.getProduct(index).price);
+    }
+
+    getSelected(product: Product): boolean {
+        return product.name == this.selectedProduct;
     }
 
     get nextProduct(): Product {
