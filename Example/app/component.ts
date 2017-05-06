@@ -4,7 +4,7 @@ import { Product } from "./product.model";
 
 @Component({
     selector: "app",
-    templateUrl: "app/ngTemplateOutlet.html"
+    templateUrl: "app/EventBinding.html"
 })
 export class ProductComponent {
     model: Model = new Model();
