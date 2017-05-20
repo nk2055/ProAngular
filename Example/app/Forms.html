@@ -19,7 +19,7 @@
     <div class="form-group">
         <label>Name</label>
         <input class="form-control" name="name" [(ngModel)]="newProduct.name" #name="ngModel" required minlength="5" pattern="^[A-Za-z ]+$" />
-        <ul class="text-danger list-unstyled" *ngIf="(formSubmitted || name.dirty) && name.invalid">
+        <ul class="text-danger" *ngIf="(formSubmitted || name.dirty) && name.invalid">
             <li *ngIf="name.errors?.required">
                 You must enter a product name
             </li>

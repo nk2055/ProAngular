@@ -2,14 +2,16 @@ import { ApplicationRef, Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Model } from "./repository.model";
 import { Product } from "./product.model";
+import { ProductFormGroup } from "./form.model";
 
 @Component({
     selector: "app",
-    templateUrl: "app/Forms.html"
+    templateUrl: "app/Forms-Model.html"
 })
 export class ProductComponent {
     model: Model = new Model();
     newProduct: Product = new Product();
+    form: ProductFormGroup = new ProductFormGroup();
 
     counter: number = 1;
     targetName: string = "Kayak";
