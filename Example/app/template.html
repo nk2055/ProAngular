@@ -3,7 +3,12 @@
     input.ng-dirty.ng-valid { border: 2 px solid #6bc502 }
 </style>
 
-<table class="table table-sm table-bordered table-striped">
+<div class="checkbox">
+    <label>
+        <input type="checkbox" [(ngModel)]="showTable" />Show Table
+    </label>
+</div>
+<table *paIf="showTable" class="table table-sm table-bordered table-striped">
     <tr>
         <th></th>
         <th>Name</th>

@@ -4,12 +4,13 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProductComponent } from "./component";
 import { PaAttrDirective } from "./attr.directive";
 import { PaModel } from "./twoway.directive";
+import { PaStructureDirective } from "./structure.directive";
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule],
 
     // declarations declares Directives & Components
-    declarations: [ProductComponent, PaAttrDirective, PaModel],
+    declarations: [ProductComponent, PaAttrDirective, PaModel, PaStructureDirective],
     
     bootstrap: [ProductComponent]
 })
