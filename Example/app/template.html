@@ -4,6 +4,10 @@
 </style>
 
 <div class="col-xs-6">
+    <div class="form-group bg-info p-a-1">
+        <label>Name:</label>
+        <input class="bg-primary" [paModel]="newProduct.name" (paModelChange)="newProduct.name=$event" />
+    </div>
     <form novalidate [formGroup]="form" (ngSubmit)="submitForm(form)">
         <div class="form-group" *ngFor="let control of form.productControls">
             <label>{{control.label}}</label>
