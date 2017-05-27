@@ -1,13 +1,26 @@
-import { Directive, ElementRef, Attribute, Input, SimpleChange } from "@angular/core";
+import { Directive, ElementRef, Attribute, Input, SimpleChange, Output, EventEmitter } from "@angular/core";
+import { Product } from "./product.model";
 
 @Directive({
     selector: "[pa-attr]",
 })
 export class PaAttrDirective {
-    constructor(private element: ElementRef) { }
+    constructor(private element: ElementRef) { 
+        this.element.nativeElement.addEventListener("click", e => {
+            if (this.product != null) {
+                this.click.emit(this.product.category);
+            }
+        });
+    }
 
     @Input("pa-attr")
     bgClass: string;
+
+    @Input("pa-product")
+    product: Product;
+
+    @Output("pa-category")
+    click = new EventEmitter<string>();
 
     ngOnInit() {
         this.element.nativeElement.classList.add(this.bgClass || "bg-success");
