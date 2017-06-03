@@ -10,9 +10,7 @@ import { ProductFormGroup } from "./form.model";
 })
 export class ProductComponent {
     model: Model = new Model();
-    form: ProductFormGroup = new ProductFormGroup();
-    newProduct: Product = new Product();
-    formSubmitted: boolean = false;
+    
     showTable: boolean = true;
     darkColor: boolean = false;
 
@@ -22,41 +20,10 @@ export class ProductComponent {
 
         console.log((<any>window).model);
     }
-    
-    getProduct(key: number): Product {
-        var product = this.model.getProduct(key);
-        return product;
-    }
-
-    getProducts(): Product[] {
-        return this.model.getProducts();
-    }
 
     addProduct(p: Product) {
         console.log("New Product: " + this.jsonProduct);
         this.model.saveProduct(p);
-    }
-
-    deleteProduct(key: number) {
-        this.model.deleteProduct(key);
-    }
-
-    submitForm(form: NgForm) {
-        this.formSubmitted = true;
-        if (form.valid) {
-            this.addProduct(this.newProduct);
-            this.newProduct = new Product();
-            form.reset();
-            this.formSubmitted = false;
-        }
-    }
-
-    get nextProduct(): Product {
-        return this.model.getProducts().shift();
-    }
-
-    get jsonProduct() {
-        return JSON.stringify(this.newProduct);
     }
 }
 
