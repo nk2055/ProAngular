@@ -52,7 +52,7 @@ export class ProductFormGroup extends FormGroup {
                     Validators.required, 
                     Validators.pattern("^[A-Za-z ]+$"),
                     Validators.minLength(3),
-                    Validators.maxLength(10)])),
+                    Validators.maxLength(20)])),
             price: new ProductFormControl("Price", "price", "", 
                 Validators.compose([
                     Validators.required,
