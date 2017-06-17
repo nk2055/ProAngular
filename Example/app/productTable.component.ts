@@ -1,12 +1,16 @@
 import { Component, Input, ViewChildren, QueryList } from "@angular/core";
 import { Model } from "./repository.model";
 import { Product } from "./product.model";
+import { DiscountService } from "./discount.service";
 
 @Component({
     selector: "paProductTable",
     templateUrl: "app/productTable.component.html"
 })
 export class ProductTableComponent {
+
+    // we don't need this object here anymore, since we are using dependency injection(@Injectable) now
+    // discounter: DiscountService = new DiscountService();
 
     @Input("model")
     dataModel: Model;
