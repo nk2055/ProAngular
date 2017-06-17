@@ -12,8 +12,10 @@ export class ProductTableComponent {
     // we don't need this object here anymore, since we are using dependency injection(@Injectable) now
     // discounter: DiscountService = new DiscountService();
 
-    @Input("model")
-    dataModel: Model;
+    constructor(private dataModel: Model) { }
+
+    // @Input("model")
+    // dataModel: Model;
 
     getProduct(key: number): Product {
         return this.dataModel.getProduct(key);
