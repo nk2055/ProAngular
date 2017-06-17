@@ -9,12 +9,12 @@ import { ProductFormGroup } from "./form.model";
     templateUrl: "app/template.html"
 })
 export class ProductComponent {
-    model: Model = new Model();
+    // model: Model = new Model();
     
     showTable: boolean = true;
     darkColor: boolean = false;
 
-    constructor(ref: ApplicationRef) {
+    constructor(ref: ApplicationRef, private model: Model) {
         (<any>window).appRef = ref;
         (<any>window).model = this.model;
 
