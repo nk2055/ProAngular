@@ -13,6 +13,7 @@ import { ProductFormComponent } from "./productForm.component";
 import { PaToggleView } from "./toggleView.component";
 import { PaAddTaxPipe } from "./addTax.pipe";
 import { PaCategoryFilterPipe } from "./categoryFilter.pipe";
+import { LOCALE_ID } from "@angular/core";
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule],
@@ -23,6 +24,8 @@ import { PaCategoryFilterPipe } from "./categoryFilter.pipe";
         PaCellColor, PaCellColorSwitcher,
         ProductTableComponent, ProductFormComponent, PaToggleView, 
         PaAddTaxPipe, PaCategoryFilterPipe],
+
+    providers: [{ provide: LOCALE_ID, useValue: "en-US" }],
     
     bootstrap: [ProductComponent]
 })
