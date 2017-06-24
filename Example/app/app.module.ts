@@ -44,6 +44,6 @@ logger.minimumLevel = LogLevel.DEBUG;
         // { provide: LOG_SERVICE, useClass: LogService, multi: true }],
         { provide: LogService, useValue: logger }],
     
-    bootstrap: [ProductComponent]
+    bootstrap: [ProductFormComponent, ProductTableComponent]
 })
 export class AppModule {}
