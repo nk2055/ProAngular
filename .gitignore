@@ -57,6 +57,8 @@ JavaScriptPrimer/**/*.js
 SportsStore/app/**/*.js
 Example/app/**/*.js
 Example/app/**/*.js.map
+ExampleApp/app/**/*.js
+ExampleApp/app/**/*.js.map
 **/rxjs.module.min.js
 **/typings.json
 

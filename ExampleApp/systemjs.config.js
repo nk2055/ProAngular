@@ -2,7 +2,7 @@
 
     var paths = {
         "@angular/*": "node_modules/@angular/*"
-    }
+    };
 
     var packages = { "app": {} };
 

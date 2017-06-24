@@ -1,5 +1,5 @@
-<div class="bg-primary p-a-1" [class.bg-warning]="editing">
-    <h5>{{editing ? "Edit" : "Create"}} Product</h5>
+<div class="bg-primary p-a-1">
+    <h4>{{editing ? "Edit" : "Create"}} Product</h4>
 </div>
 <form novalidate #form="ngForm" (ngSubmit)="submitForm(form)" (reset)="resetForm()">
     <div class="form-group">
