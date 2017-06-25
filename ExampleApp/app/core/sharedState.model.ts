@@ -3,6 +3,6 @@ export enum MODES {
 }
 
 export class SharedState {
-    mode: MODES = MODES.EDIT;
+    mode: MODES = MODES.CREATE;
     id: number;
 }

@@ -10,7 +10,7 @@ import { MODES, SharedState } from "./sharedState.model";
 })
 export class TableComponent {
 
-    constructor(private model: Model, private state: SharedState) { state.mode = MODES.CREATE; }
+    constructor(private model: Model, private state: SharedState) { }
 
     getProduct(key: number): Product {
         return this.model.getProduct(key);
