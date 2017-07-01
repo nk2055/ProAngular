@@ -22,8 +22,6 @@ export class FormComponent {
 
     constructor(private model: Model, @Inject(SHARED_STATE) private stateEvents: Observable<SharedState>) {
         stateEvents
-        .skipWhile(state => state.mode == MODES.EDIT)
-        .distinctUntilChanged((firstState, secondState) => firstState.mode == secondState.mode && firstState.id == secondState.id)
         .subscribe((update) => {
             console.log('stateEvents called');
             this.product = new Product();
@@ -47,14 +45,4 @@ export class FormComponent {
     resetForm() {
         this.product = new Product();
     }
-
-    // ngDoCheck() {
-    //     if (this.lastId != this.state.id) {
-    //         this.product = new Product();
-    //         if (this.state.mode == MODES.EDIT) {
-    //             Object.assign(this.product, this.model.getProduct(this.state.id));
-    //         }
-    //         this.lastId = this.state.id;
-    //     }
-    // }
 }
