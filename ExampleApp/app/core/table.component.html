@@ -13,11 +13,11 @@
         <td style="vertical-align: middle">{{product.price | currency:"USD":true}}</td>
         <td class="text-xs-center">
             <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)">Delete</button>
-            <button class="btn btn-warning btn-sm" (click)="editProduct(product.id)">Edit</button>
+            <button class="btn btn-warning btn-sm" (click)="editProduct(product.id)" routerLink="/form/edit">Edit</button>
         </td>
     </tr>
 </table>
-<button class="btn btn-primary" (click)="createProduct()">
+<button class="btn btn-primary" (click)="createProduct()" routerLink="/form/create">
     Create New Product
 </button>
 <button class="btn btn-danger" (click)="deleteProduct(-1)">

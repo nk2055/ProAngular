@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 import { ModelModule } from "../model/model.module";
 import { TableComponent } from "./table.component";
 import { FormComponent } from "./form.component";
@@ -14,7 +15,7 @@ import { Model } from "../model/repository.model";
 import { MODES } from "./sharedState.model";
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, ModelModule, MessageModule],
+    imports: [BrowserModule, FormsModule, RouterModule, ModelModule, MessageModule],
     declarations: [TableComponent, FormComponent, StatePipe],
     exports: [ModelModule, TableComponent, FormComponent],
     providers: [{ 
