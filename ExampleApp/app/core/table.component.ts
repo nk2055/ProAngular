@@ -11,8 +11,7 @@ import { Model } from "../model/repository.model";
 })
 export class TableComponent {
 
-    constructor(private model: Model, /*@Inject(SHARED_STATE) private observer: Observer<SharedState>*/) { 
-
+    constructor(private model: Model) {
     }
 
     getProduct(key: number): Product {
@@ -26,18 +25,4 @@ export class TableComponent {
     deleteProduct(key: number) {
         this.model.deleteProduct(key);
     }
-
-    // editProduct(key: number) {
-    //     // this.state.id = key;
-    //     // this.state.mode = MODES.EDIT;
-
-    //     this.observer.next(new SharedState(MODES.EDIT, key));
-    // }
-
-    // createProduct() {
-    //     // this.state.id = undefined;
-    //     // this.state.mode = MODES.CREATE;
-
-    //     this.observer.next(new SharedState(MODES.CREATE));
-    // }
 }
