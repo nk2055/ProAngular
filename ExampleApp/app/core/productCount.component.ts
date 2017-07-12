@@ -1,4 +1,5 @@
 import { Component, KeyValueDiffer, KeyValueDiffers, ChangeDetectorRef } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { Model } from "../model/repository.model";
 
 @Component({
@@ -8,9 +9,17 @@ import { Model } from "../model/repository.model";
 export class ProductCountComponent { 
 
     private differ: KeyValueDiffer;
+    private category: string;
     count: number = 0;
 
-    constructor(private model: Model, private keyValueDiffers: KeyValueDiffers, private changeDetector: ChangeDetectorRef) { }
+    constructor(private model: Model, private keyValueDiffers: KeyValueDiffers, private changeDetector: ChangeDetectorRef, activeRoute: ActivatedRoute) { 
+        activeRoute.pathFromRoot.forEach(route => route.params.subscribe(params => {
+            if (params["category"] != null) {
+                this.category = params["category"];
+                this.updateCount();
+            }
+        }));
+    }
 
     ngOnInit() {
         this.differ = this.keyValueDiffers.find(this.model.getProducts()).create(this.changeDetector);
@@ -23,7 +32,7 @@ export class ProductCountComponent {
     }
 
     private updateCount() {
-        this.count = this.model.getProducts().length;
+        this.count = this.model.getProducts().filter(p => this.category == null || p.category == this.category).length;
     }
 
 }
