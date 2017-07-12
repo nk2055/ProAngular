@@ -1,8 +1,7 @@
 import { Component, Inject } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { Product } from "../model/product.model";
 import { Model } from "../model/repository.model";
-// import { MODES, SharedState, SHARED_STATE } from "./sharedState.model";
-// import { Observer } from "rxjs/Observer";
 
 @Component({
     selector: "paTable",
@@ -10,8 +9,12 @@ import { Model } from "../model/repository.model";
     templateUrl: "table.component.html"
 })
 export class TableComponent {
+    private category: string = null;
 
-    constructor(private model: Model) {
+    constructor(private model: Model, private activeRoute: ActivatedRoute) {
+        activeRoute.params.subscribe(params => {
+            this.category = params["category"] || null;
+        });
     }
 
     getProduct(key: number): Product {
@@ -19,7 +22,11 @@ export class TableComponent {
     }
 
     getProducts(): Product[] { 
-        return this.model.getProducts();
+        return this.model.getProducts().filter(p => this.category == null || p.category == this.category);
+    }
+
+    get categories(): string[] {
+        return this.model.getProducts().map(p => p.category).filter((category, index, array) => array.indexOf(category) == index).sort();
     }
 
     deleteProduct(key: number) {

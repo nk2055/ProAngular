@@ -17,11 +17,13 @@ export class FormComponent {
     editing: boolean = false;
 
     constructor(private model: Model, activeRoute: ActivatedRoute, private router: Router) {
-        this.editing = activeRoute.snapshot.params["mode"] == "edit";
-        let id = activeRoute.snapshot.params["id"];
-        if (id != null) {
-            Object.assign(this.product, model.getProduct(id) || new Product());
-        }
+        activeRoute.params.subscribe(params => {
+            this.editing = params["mode"] == "edit";
+            let id = params["id"];
+            if (id != null) {
+                Object.assign(this.product, model.getProduct(id) || new Product());
+            }
+        });
     }
 
     submitForm(form: NgForm) {
