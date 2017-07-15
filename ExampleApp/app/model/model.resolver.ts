@@ -19,4 +19,4 @@ export class ModelResolver {
             return null;
         }
     }
-}
+}   

@@ -10,7 +10,8 @@
         Next
     </button>
 </div>
-<form novalidate #form="ngForm" (ngSubmit)="submitForm(form)" (reset)="resetForm()">
+<!-- <form novalidate #form="ngForm" (ngSubmit)="submitForm(form)" (reset)="resetForm()"> -->
+<form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
     <div class="form-group">
         <label>Naame</label>
         <input class="form-control" name="name" [(ngModel)]="product.name" required />
@@ -26,5 +27,5 @@
     <button type="submit" class="btn btn-primary" [class.btn-warning]="editing" [disabled]="form.invalid">
         {{editing ? "Save" : "Create"}}
     </button>
-    <button type="reset" class="btn btn-secondary" routerLink="/">Cancel</button>
+    <button type="button" class="btn btn-secondary" routerLink="/">Cancel</button>
 </form>

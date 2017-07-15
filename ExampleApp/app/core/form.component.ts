@@ -13,6 +13,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class FormComponent {
 
     product: Product = new Product();
+    originalProduct: Product = new Product();
+
     lastId: number;
     editing: boolean = false;
 
@@ -22,6 +24,7 @@ export class FormComponent {
             let id = params["id"];
             if (id != null) {
                 Object.assign(this.product, model.getProduct(id) || new Product());
+                Object.assign(this.originalProduct, this.product);
             }
         });
     }
@@ -29,11 +32,12 @@ export class FormComponent {
     submitForm(form: NgForm) {
         if (form.valid) {
             this.model.saveProduct(this.product);
+            this.originalProduct = this.product;
             this.router.navigateByUrl("/");
         }
     }
 
-    resetForm() {
-        this.product = new Product();
-    }
+    // resetForm() {
+    //     this.product = new Product();
+    // }
 }

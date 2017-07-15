@@ -14,10 +14,12 @@ import { Model } from "../model/repository.model";
 import { ProductCountComponent } from "./productCount.component";
 import { CategoryCountComponent } from "./categoryCount.component";
 import { NotFoundComponent } from "./notFound.component";
+import { UnsavedGuard } from "./unsaved.guard";
 
 @NgModule({
     imports: [BrowserModule, FormsModule, RouterModule, ModelModule, MessageModule],
     declarations: [TableComponent, FormComponent, StatePipe, ProductCountComponent, CategoryCountComponent, NotFoundComponent],
+    providers: [UnsavedGuard],
     exports: [ModelModule, TableComponent, FormComponent]
 })
 export class CoreModule { }
